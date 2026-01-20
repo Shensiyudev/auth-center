@@ -36,7 +36,7 @@ LOGGING_CONFIG = {
         # FastAPI 与 Uvicorn 的日志接管
         "uvicorn": {"handlers": ["console", "file"], "level": "ERROR", "propagate": False},
         "uvicorn.error": {"level": "ERROR"},
-        "uvicorn.access": {"handlers": ["console"], "level": "ERROR", "propagate": False},
+        "uvicorn.access": {"handlers": ["console"], "level": "INFO", "propagate": False},
         # 你的应用自定义日志
         "app": {"handlers": ["console", "file"], "level": "INFO", "propagate": False},
     },
@@ -47,3 +47,6 @@ def setup_logging():
     if not os.path.exists(LOGFILE_DIR):
         os.makedirs(LOGFILE_DIR)
     logging.config.dictConfig(LOGGING_CONFIG)
+
+
+logger = logging.getLogger('app')

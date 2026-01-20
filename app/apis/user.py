@@ -4,8 +4,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.config import COOKIE_KEY, COOKIE_DOMAIN
 from app.config.database import get_db
 from app.crud.user import get_user_by_phone
-from app.schemas.token import JWTPayload
-from app.schemas.user import PhoneLogin
+from app.schemas import PhoneLogin, JWTPayload
 from app.utils import PasswordManager, Token, APIResponse
 
 router = APIRouter()
@@ -22,6 +21,7 @@ async def login(pl: PhoneLogin, db: AsyncSession = Depends(get_db)):
 
     payload = JWTPayload(user_id=user.id)
 
+    # 获取缓存的token
     token = await Token.get(payload)
     if token is None:
         token = await Token.create(payload, cache=True)

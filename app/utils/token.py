@@ -2,7 +2,8 @@
 import jwt
 
 from app.config.redis import rc
-from app.schemas.token import JWTPayload
+from app.config.log import logger
+from app.schemas import JWTPayload
 
 from app.config import TOKEN_EXPIRE
 
@@ -29,8 +30,10 @@ class Token:
             data = jwt.decode(token, cls.SECRET_KEY, algorithms=[cls.ALGORITHM])
             return JWTPayload(**data)
         except jwt.exceptions.DecodeError:
+            logger.info('Token解析失败')
             return None
         except jwt.exceptions.ExpiredSignatureError:
+            logger.info('Token已过期')
             return None
 
     @classmethod

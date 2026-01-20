@@ -1,9 +1,7 @@
-import logging
 
 from passlib.exc import UnknownHashError
 from passlib.context import CryptContext
-
-logger = logging.getLogger('app')
+from app.config.log import logger
 
 
 class PasswordManager:
@@ -25,4 +23,4 @@ class PasswordManager:
 
 
 if __name__ == '__main__':
-    print(PasswordManager.encrypt('123456'))
+    print(PasswordManager.encrypt('12345678'))

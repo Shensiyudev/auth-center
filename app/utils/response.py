@@ -14,7 +14,7 @@ class APIResponse:
     @classmethod
     def success200(
         cls,
-        data: dict,
+        data: dict | BaseModel,
         msg: str = '',
         *,
         code: int = 0
@@ -26,6 +26,9 @@ class APIResponse:
         :param code:
         :return:
         """
+        if isinstance(data, BaseModel):
+            data = data.model_dump()
+
         content = ResponseContent(
             msg=msg,
             code=code,
