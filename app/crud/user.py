@@ -1,0 +1,9 @@
+from sqlalchemy import select
+from sqlalchemy.ext.asyncio import AsyncSession
+from app.models import User
+
+
+async def get_user_by_phone(db: AsyncSession, phone: str) -> User | None:
+    stmt = select(User).where(User.phone == phone)
+    result = await db.execute(stmt)
+    return result.scalars().first()

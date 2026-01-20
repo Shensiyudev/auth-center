@@ -8,6 +8,7 @@ from app.config.database import engine
 from app.config.log import setup_logging
 from app.config.redis import rc
 from app.apis.auth import router as auth_router
+from app.apis.user import router as user_router
 
 
 @asynccontextmanager
@@ -41,8 +42,9 @@ fast_app.add_middleware(CORSMiddleware, **CORS)
 
 
 fast_app.include_router(auth_router, prefix='/auth', tags=['auth'])
+fast_app.include_router(user_router, prefix='/user', tags=['user'])
 
 
 if __name__ == '__main__':
     import uvicorn
-    uvicorn.run(fast_app, host='localhost', port=8000)
+    uvicorn.run(fast_app, host='127.0.0.1', port=8000)

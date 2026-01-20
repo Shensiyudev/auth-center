@@ -18,3 +18,9 @@ python-dotenv>=1.0,<2.0
 
 # Redis
 redis>=7.1,<8.0
+
+# Passwd
+passlib[argon2]>=1.7,<2.0
+
+# Token
+PyJWT>=2.10,<3.0
