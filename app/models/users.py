@@ -32,3 +32,13 @@ class User(Base):
     def password(self, plain_password: str):
         # 赋值时自动加密
         self._password = PasswordManager.encrypt(plain_password)
+
+    def values(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "phone": self.phone,
+            "email": self.email,
+            "logged_at": self.logged_at,
+            "status": self.status
+        }
