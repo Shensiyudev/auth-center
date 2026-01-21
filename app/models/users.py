@@ -3,8 +3,8 @@ from datetime import datetime
 from sqlalchemy import String, DateTime
 from sqlalchemy.orm import Mapped, mapped_column
 
-from app.models.base import Base
-from app.utils import PasswordManager
+from models.base import Base
+from utils import PasswordManager
 
 
 class UserStatus:

@@ -1,5 +1,5 @@
-from app.config.database import engine
-from app.models import Base
+from config.database import engine
+from models import Base
 
 
 async def main():

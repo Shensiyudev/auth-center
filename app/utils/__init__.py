@@ -1,6 +1,6 @@
-from app.utils.passwd import PasswordManager
-from app.utils.token import Token
-from app.utils.response import APIResponse
+from utils.passwd import PasswordManager
+from utils.token import Token
+from utils.response import APIResponse
 
 
 __all__ = [

@@ -1,11 +1,11 @@
 
 import jwt
 
-from app.config.redis import rc
-from app.config.log import logger
-from app.schemas import JWTPayload
+from config.redis import rc
+from config.log import logger
+from schemas import JWTPayload
 
-from app.config import TOKEN_EXPIRE
+from config import TOKEN_EXPIRE
 
 
 class Token:

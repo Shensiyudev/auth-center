@@ -2,7 +2,7 @@ from datetime import datetime
 
 from pydantic import BaseModel, Field
 
-from app.config import TOKEN_EXPIRE
+from config import TOKEN_EXPIRE
 
 
 class JWTPayload(BaseModel):

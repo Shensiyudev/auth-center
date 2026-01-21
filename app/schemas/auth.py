@@ -1,6 +1,6 @@
 
 from pydantic import BaseModel
-from app.schemas.user import User
+from schemas.user import User
 
 
 class AuthInput(BaseModel):

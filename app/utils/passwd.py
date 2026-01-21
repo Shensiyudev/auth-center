@@ -1,7 +1,7 @@
 
 from passlib.exc import UnknownHashError
 from passlib.context import CryptContext
-from app.config.log import logger
+from config.log import logger
 
 
 class PasswordManager:

@@ -1,6 +1,6 @@
-from app.schemas.auth import AuthInput, AuthOutput
-from app.schemas.token import JWTPayload
-from app.schemas.user import User, PhoneLogin
+from schemas.auth import AuthInput, AuthOutput
+from schemas.token import JWTPayload
+from schemas.user import User, PhoneLogin
 
 
 __all__ = [

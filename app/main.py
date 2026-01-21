@@ -3,12 +3,12 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
-from app.config import CORS
-from app.config.database import engine
-from app.config.log import setup_logging
-from app.config.redis import rc
-from app.apis.auth import router as auth_router
-from app.apis.user import router as user_router
+from config import CORS
+from config.database import engine
+from config.log import setup_logging
+from config.redis import rc
+from apis.auth import router as auth_router
+from apis.user import router as user_router
 
 
 @asynccontextmanager
@@ -36,15 +36,15 @@ async def lifespan(app: FastAPI):
     rc.close()
 
 
-fast_app = FastAPI(lifespan=lifespan)
+app = FastAPI(lifespan=lifespan)
 
-fast_app.add_middleware(CORSMiddleware, **CORS)
+app.add_middleware(CORSMiddleware, **CORS)
 
 
-fast_app.include_router(auth_router, prefix='/auth', tags=['auth'])
-fast_app.include_router(user_router, prefix='/user', tags=['user'])
+app.include_router(auth_router, prefix='/auth', tags=['auth'])
+app.include_router(user_router, prefix='/user', tags=['user'])
 
 
 if __name__ == '__main__':
     import uvicorn
-    uvicorn.run(fast_app, host='127.0.0.1', port=8000)
+    uvicorn.run(app, host='127.0.0.1', port=8000)

@@ -1,7 +1,7 @@
 import logging.config
 import os.path
 
-from app.config import BASE_DIR
+from config import BASE_DIR
 
 
 LOGFILE_DIR = BASE_DIR / 'logs'

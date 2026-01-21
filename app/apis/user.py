@@ -1,11 +1,11 @@
 from fastapi import APIRouter, Request, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.config import COOKIE_KEY, COOKIE_DOMAIN
-from app.config.database import get_db
-from app.crud.user import get_user_by_phone
-from app.schemas import PhoneLogin, JWTPayload
-from app.utils import PasswordManager, Token, APIResponse
+from config import COOKIE_KEY, COOKIE_DOMAIN
+from config.database import get_db
+from crud.user import get_user_by_phone
+from schemas import PhoneLogin, JWTPayload
+from utils import PasswordManager, Token, APIResponse
 
 router = APIRouter()
 
