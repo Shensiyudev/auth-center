@@ -8,7 +8,7 @@ class PostgresConfig:
     PORT = os.getenv("POSTGRES_PORT", "5432")
     USER = os.getenv("POSTGRES_USER", "postgres")
     PASSWORD = os.getenv("POSTGRES_PASSWORD", "123456")
-    DB = os.getenv("POSTGRES_DB", "rag")
+    DB = os.getenv("POSTGRES_DB", "postgres")
     URL = f"postgresql+psycopg://{USER}:{PASSWORD}@{HOST}:{PORT}/{DB}"
 
 
