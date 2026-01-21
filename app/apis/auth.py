@@ -21,15 +21,15 @@ async def varify(request: Request, auth: AuthInput, db: AsyncSession = Depends(g
     payload = await Token.decode(token)
 
     if not payload:
-        return APIResponse.success200(AuthOutput(user=None, auth=False), code=1)
+        return APIResponse.success200(AuthOutput(), code=1)
 
     # 验证缓存
     if not await Token.exists(payload):
-        return APIResponse.success200(AuthOutput(user=None, auth=False), code=2)
+        return APIResponse.success200(AuthOutput(), code=2)
 
     # 验证用户
     user = await get_user_by_id(db, payload.user_id)
     if not user:
-        return APIResponse.success200(AuthOutput(user=None, auth=False), code=3)
+        return APIResponse.success200(AuthOutput(), code=3)
 
     return APIResponse.success200(AuthOutput(user=user.values(), auth=True))

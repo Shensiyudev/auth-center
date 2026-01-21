@@ -1,5 +1,5 @@
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from schemas.user import User
 
 
@@ -8,5 +8,5 @@ class AuthInput(BaseModel):
 
 
 class AuthOutput(BaseModel):
-    user: User | None
-    auth: bool
+    user: User | None = Field(default=None)
+    auth: bool = Field(default=False)
