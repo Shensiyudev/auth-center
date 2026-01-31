@@ -14,7 +14,7 @@ router = APIRouter()
 async def varify(request: Request, auth: AuthInput, db: AsyncSession = Depends(get_db)):
     backend_key = request.headers.get(HEADER_KEY)
     if backend_key != API_KEY:
-        return APIResponse.bad400(msg="无效密钥")
+        return APIResponse.bad400(msg="api-key required")
 
     # 验证token
     token = auth.token
@@ -31,5 +31,8 @@ async def varify(request: Request, auth: AuthInput, db: AsyncSession = Depends(g
     user = await get_user_by_id(db, payload.user_id)
     if not user:
         return APIResponse.success200(AuthOutput(), code=3)
+
+    # 刷新 token
+    await Token.cache(payload, token)
 
     return APIResponse.success200(AuthOutput(user=user.values(), auth=True))
